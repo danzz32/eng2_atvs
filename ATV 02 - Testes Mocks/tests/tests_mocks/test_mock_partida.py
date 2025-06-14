@@ -1,33 +1,33 @@
-# test_mock_partida.py
+import pytest
 from datetime import date
 from models.partida import Partida
 from models.estadio import Estadio
 from service.partida_service import PartidaService
 
 
-def test_cadastrar_partida_chama_servico_disponibilidade(mocker):
-    # Mocks
+@pytest.fixture
+def estadio_mock():
+    estadio = Estadio()
+    estadio.nome = "Estádio Nacional"
+    return estadio
+
+
+@pytest.fixture
+def partida(estadio_mock):
+    return Partida(data=date(2025, 6, 15), estadio=estadio_mock)
+
+
+def test_cadastrar_partida_quando_estadio_disponivel_entao_salva_partida(mocker, partida, estadio_mock):
     mock_repo = mocker.Mock()
     mock_disponibilidade_service = mocker.Mock()
-
-    # Estádio mockado com nome
-    estadio_mock = Estadio()
-    estadio_mock.nome = "Estádio Nacional"
-
-    # Simula que o estádio está disponível
     mock_disponibilidade_service.estadio_disponivel.return_value = True
 
-    # Instância do serviço
     service = PartidaService(mock_repo, mock_disponibilidade_service)
 
-    # Criação da partida com estádio como objeto
-    partida = Partida(data=date(2025, 6, 15), estadio=estadio_mock)
-
-    # Ação
     resultado = service.cadastrar_partida(partida)
 
-    # Verificação
     mock_disponibilidade_service.estadio_disponivel.assert_called_once_with(
-        "Estádio Nacional", date(2025, 6, 15)
+        estadio_mock.nome, partida.data
     )
+    mock_repo.save.assert_called_once_with(partida)  # <- Corrigido aqui
     assert resultado is True
