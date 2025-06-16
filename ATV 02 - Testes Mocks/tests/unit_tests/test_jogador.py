@@ -1,4 +1,5 @@
 import datetime
+
 from models.jogador import Jogador
 from models.time import Time
 from repository.jogador_repository import JogadorRepository
@@ -35,7 +36,7 @@ def test_criar_jogador_e_persistir(db_session):
 
     # Imprime o jogador salvo no banco para verificação
     print(
-        f"Jogador salvo: id={jogador_salvo.id}, nome={jogador_salvo.nome}, nascimento={jogador_salvo.nascimento}, genero={jogador_salvo.genero}, altura={jogador_salvo.altura}, time_id={jogador_salvo.time_id}")
+        f"\nJogador salvo: id={jogador_salvo.id}, nome={jogador_salvo.nome}, nascimento={jogador_salvo.nascimento}, genero={jogador_salvo.genero}, altura={jogador_salvo.altura}, time_id={jogador_salvo.time_id}")
 
 
 def test_busca_jogador_por_nome(db_session):
@@ -67,7 +68,7 @@ def test_busca_jogador_por_nome(db_session):
 
     # Imprime os jogadores encontrados para conferência
     for jogador in resultados:
-        print(f"Encontrado: id={jogador.id}, nome={jogador.nome}")
+        print(f"\nEncontrado: id={jogador.id}, nome={jogador.nome}")
 
 
 def test_atualizar_dados_jogador(db_session):
@@ -81,11 +82,12 @@ def test_atualizar_dados_jogador(db_session):
         altura=180
     )
     repo.create(jogador)
+    print(f"\nDados do jogador: id={jogador.id}, nome={jogador.nome}, nascimento={jogador.nascimento}, genero={jogador.genero}, altura={jogador.altura}")
 
     # Atualiza dados
     jogador.altura = 185
     jogador.nome = "Carlos A. Silva"
-    repo.update(jogador)  # Supondo que seu repositório tenha esse método
+    repo.update(jogador)  # Supondo que seu repositório tenha esse metodo
 
     # Busca novamente
     jogador_atualizado = db_session.query(Jogador).filter_by(id=jogador.id).first()
@@ -95,3 +97,6 @@ def test_atualizar_dados_jogador(db_session):
     assert jogador_atualizado.nome == "Carlos A. Silva"
     assert jogador_atualizado.altura == 185
     assert jogador_atualizado.nascimento == datetime.date(2000, 1, 1)
+
+    print(
+        f"\nDados do jogador: id={jogador.id}, nome={jogador.nome}, nascimento={jogador.nascimento}, genero={jogador.genero}, altura={jogador.altura}")

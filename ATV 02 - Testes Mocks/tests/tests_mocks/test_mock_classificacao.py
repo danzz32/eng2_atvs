@@ -50,8 +50,19 @@ def test_calcular_classificacao(mocker, times_mock, partidas_mock):
 
     service = ClassificacaoService(mock_partida_repo, mock_time_repo)
 
+    # Classificação antes do cálculo (normalmente todos os times zerados)
+    print("\nClassificação antes do cálculo:")
+    for t in times_mock:
+        pontos = getattr(t, 'pontos', 0)
+        print(f"{t.nome}: {pontos} pontos")
+
     # Act
     classificacao = service.calcular_classificacao()
+
+    # Classificação depois do cálculo
+    print("\nClassificação depois do cálculo:")
+    for c in classificacao:
+        print(f"{c['time'].nome}: {c['pontos']} pontos | Jogos: {c['jogos']} | Vitórias: {c['vitorias']} | Empates: {c['empates']} | Derrotas: {c['derrotas']}")
 
     # Assert: chamadas aos repositórios
     mock_time_repo.get_all.assert_called_once()

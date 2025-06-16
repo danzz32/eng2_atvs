@@ -20,7 +20,7 @@ def test_quando_campeonato_ja_iniciado_entao_nao_adiciona_time_e_lanca_excecao(m
 
     assert "já foi iniciado" in str(excinfo.value)
     campeonato_repo_mock.update.assert_not_called()
-
+    print(f"\nO campeonato já foi iniciado, não foi possível adicionar o time")
 
 def test_quando_campeonato_nao_iniciado_entao_adiciona_time_e_salva_alteracao(mocker):
     # Arrange
@@ -41,3 +41,4 @@ def test_quando_campeonato_nao_iniciado_entao_adiciona_time_e_salva_alteracao(mo
     # Assert
     assert time_mock in campeonato_mock.times
     campeonato_repo_mock.update.assert_called_once_with(campeonato_mock)
+    print(f"\nTime adicionado!")
