@@ -1,5 +1,4 @@
 import datetime
-import pytest
 from models.campeonato import Campeonato
 from models.time import Time
 from models.partida import Partida
@@ -40,16 +39,25 @@ def test_atualizar_classificacao_apos_resultados(db_session):
     resultado1 = Resultado(numGolsMandante=2, numGolsVisitante=1, partida=partida1)
     resultado_repo.create(resultado1)
 
+    # Buscar classificação ANTES da atualização
+    times_antes = campeonato_repo.get_times_por_campeonato(campeonato.id)
+    print("\nClassificação antes da atualização:")
+    for t in times_antes:
+        print(f"{t.nome}: {getattr(t, 'pontos', 0)} pontos")
+
     # Atualizar classificação (supondo metodo que recalcula pontos da tabela)
     campeonato_repo.atualizar_classificacao(campeonato.id)
 
-    # Buscar times para verificar a pontuação atualizada (supondo atributo 'pontos' ou similar)
-    times_atualizados = campeonato_repo.get_times_por_campeonato(campeonato.id)
+    # Buscar classificação DEPOIS da atualização
+    times_depois = campeonato_repo.get_times_por_campeonato(campeonato.id)
+    print("\nClassificação depois da atualização:")
+    for t in times_depois:
+        print(f"{t.nome}: {getattr(t, 'pontos', 0)} pontos")
 
     # Verificar se time1 (vencedor) recebeu 3 pontos
-    time1_atual = next(t for t in times_atualizados if t.id == time1.id)
+    time1_atual = next(t for t in times_depois if t.id == time1.id)
     assert time1_atual.pontos == 3
 
     # Verificar se time2 recebeu 0 pontos
-    time2_atual = next(t for t in times_atualizados if t.id == time2.id)
+    time2_atual = next(t for t in times_depois if t.id == time2.id)
     assert time2_atual.pontos == 0

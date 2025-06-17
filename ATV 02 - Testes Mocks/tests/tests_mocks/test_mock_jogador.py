@@ -1,6 +1,5 @@
-import pytest
-from service.jogador_service import JogadorService
 from service.estatistica_service import EstatisticaService
+from service.jogador_service import JogadorService
 from service.time_service import TimeService
 
 
@@ -15,6 +14,7 @@ def test_salvar_jogador_sem_nome_nao_chama_save(mocker, jogador_sem_nome):
     # Assert
     mock_repo.save.assert_not_called()
     assert resultado is False
+    print(f"\nMétodo save chamado? {'Sim' if resultado == True else 'Não'}")
 
 
 def test_servico_estatisticas_retorna_dados_e_persiste_jogador(mocker, jogador_mock, estatisticas_mock):
@@ -45,6 +45,9 @@ def test_servico_estatisticas_retorna_dados_e_persiste_jogador(mocker, jogador_m
     assert jogador_mock.assistencias == 3
     assert jogador_mock.partidas_jogadas == 15
 
+    print(
+        f"\nDados do jogador:\ngols = {jogador_mock.gols}\nassistencias = {jogador_mock.assistencias}\npartidas jogadas = {jogador_mock.partidas_jogadas}")
+
 
 def test_adicionar_jogador_envia_notificacao(mocker, jogador_mock, time_mock):
     # Arrange
@@ -64,3 +67,4 @@ def test_adicionar_jogador_envia_notificacao(mocker, jogador_mock, time_mock):
     assert jogador_mock.time == time_mock
     mock_jogador_repo.save.assert_called_once_with(jogador_mock)
     mock_notification_service.enviar_boas_vindas.assert_called_once_with(jogador_mock)
+    print(f'\nJogador adicionado \nNotificação enviada!')

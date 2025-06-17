@@ -31,3 +31,4 @@ def test_cadastrar_partida_quando_estadio_disponivel_entao_salva_partida(mocker,
     )
     mock_repo.save.assert_called_once_with(partida)  # <- Corrigido aqui
     assert resultado is True
+    print(f"\nData disponível? {'Sim' if resultado == True else 'Não'}")
