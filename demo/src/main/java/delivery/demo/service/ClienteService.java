@@ -34,5 +34,9 @@ public class ClienteService {
     public List<Cliente> buscarPorNome(String nome) {
         return clienteRepository.findByNomeContainingIgnoreCase(nome);
     }
+
+    public List<Cliente> buscarPorTelefone(String telefone) {
+        return clienteRepository.findByTelefoneContainingIgnoreCase(telefone);
+    }
 }
 

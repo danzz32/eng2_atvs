@@ -23,8 +23,8 @@ public interface FreteRepository extends JpaRepository<Frete, Long> {
     void deleteById(Long id);
 
     // Custom (exemplo)
-    List<Frete> findByClienteId(Long clienteId);
-
     List<Frete> findByCidadeId(Long cidadeId);
+
+    List<Frete> findByClienteIdOrderByValorDesc(Long clienteId);
 }
 

@@ -24,5 +24,7 @@ public interface CidadeRepository extends JpaRepository<Cidade, Long> {
 
     // Custom (exemplo)
     List<Cidade> findByUf(String uf);
+
+    List<Cidade> findByNomeContainingIgnoreCase(String nome);
 }
 

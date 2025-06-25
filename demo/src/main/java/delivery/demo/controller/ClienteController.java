@@ -2,6 +2,7 @@ package delivery.demo.controller;
 
 import delivery.demo.model.Cliente;
 import delivery.demo.service.ClienteService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -28,7 +29,7 @@ public class ClienteController {
     }
 
     @PostMapping
-    public ResponseEntity<Cliente> criar(@RequestBody Cliente cliente) {
+    public ResponseEntity<Cliente> criar(@Valid @RequestBody Cliente cliente) {
         Cliente novo = clienteService.salvar(cliente);
         return ResponseEntity.ok(novo);
     }

@@ -3,6 +3,7 @@ package delivery.demo.controller;
 
 import delivery.demo.model.Frete;
 import delivery.demo.service.FreteService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -29,7 +30,7 @@ public class FreteController {
     }
 
     @PostMapping
-    public ResponseEntity<Frete> criar(@RequestBody Frete frete) {
+    public ResponseEntity<Frete> criar(@Valid @RequestBody Frete frete) {
         Frete novo = freteService.salvar(frete);
         return ResponseEntity.ok(novo);
     }

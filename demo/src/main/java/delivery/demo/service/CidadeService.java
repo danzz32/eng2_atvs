@@ -34,5 +34,9 @@ public class CidadeService {
     public List<Cidade> buscarPorUf(String uf) {
         return cidadeRepository.findByUf(uf);
     }
+
+    public List<Cidade> buscarPorNome(String nome){
+        return cidadeRepository.findByNomeContainingIgnoreCase(nome);
+    }
 }
 

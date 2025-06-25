@@ -23,5 +23,7 @@ public interface ClienteRepository extends JpaRepository<Cliente, Long> {
 
     // Custom (exemplo)
     List<Cliente> findByNomeContainingIgnoreCase(String nome);
+
+    List<Cliente> findByTelefoneContainingIgnoreCase(String telefone);
 }
 

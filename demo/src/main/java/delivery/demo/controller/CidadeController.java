@@ -3,6 +3,7 @@ package delivery.demo.controller;
 
 import delivery.demo.model.Cidade;
 import delivery.demo.service.CidadeService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -29,7 +30,7 @@ public class CidadeController {
     }
 
     @PostMapping
-    public ResponseEntity<Cidade> criar(@RequestBody Cidade cidade) {
+    public ResponseEntity<Cidade> criar(@Valid @RequestBody Cidade cidade) {
         Cidade nova = cidadeService.salvar(cidade);
         return ResponseEntity.ok(nova);
     }
