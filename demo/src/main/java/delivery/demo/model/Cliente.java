@@ -13,9 +13,10 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString(exclude = {"fretes"})
+@Table(name = "cliente")
 public class Cliente {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
     @NotBlank(message = "Nome é obrigatório")

@@ -13,10 +13,11 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
+@Table(name = "frete")
 public class Frete {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @ManyToOne
@@ -32,11 +33,11 @@ public class Frete {
     @NotBlank(message = "A descrição deve estar preenchida")
     private String descricao;
 
-    @NotBlank(message = "O peso deve ser preenchido")
+    @NotNull()
     @Positive(message = "O peso deve ser um valor  positivo")
     private Double peso;
 
-    @NotBlank(message = "O valor deve ser preenchido")
+    @NotNull()
     @Positive(message = "O valor deve ser positivo")
     private Double valor;
 

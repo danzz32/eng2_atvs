@@ -15,6 +15,7 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString(exclude = {"fretes"})
+@Table(name = "cidade")
 public class Cidade {
 
     @Id
