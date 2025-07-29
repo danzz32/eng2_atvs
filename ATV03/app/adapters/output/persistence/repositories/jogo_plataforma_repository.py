@@ -13,11 +13,18 @@ class JogoPlataformaRepository:
         self.db.refresh(relacao)
         return relacao
 
-    def get_all(self) -> List[JogoPlataforma]:
+    def get_all(self) -> list[type[JogoPlataforma]]:
         return self.db.query(JogoPlataforma).all()
 
-    def get_by_id(self, id: int) -> Optional[JogoPlataforma]:
-        return self.db.query(JogoPlataforma).filter(JogoPlataforma.id == id).first()
+    def get_by_id(self, jogo_plataforma_id: int) -> Optional[JogoPlataforma]:
+        return self.db.query(JogoPlataforma).filter(jogo_plataforma_id == JogoPlataforma.id).first()
+
+    def get_game_platform(self, jogo_id: int, plataforma_id: int) -> JogoPlataforma | None:
+        return (
+            self.db.query(JogoPlataforma)
+            .filter_by(jogo_id=jogo_id, plataforma_id=plataforma_id)
+            .first()
+        )
 
     def update(self, relacao: JogoPlataforma) -> JogoPlataforma:
         self.db.commit()

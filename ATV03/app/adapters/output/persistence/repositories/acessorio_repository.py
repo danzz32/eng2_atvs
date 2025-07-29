@@ -13,11 +13,11 @@ class AcessorioRepository:
         self.db.refresh(acessorio)
         return acessorio
 
-    def get_all(self) -> List[Acessorio]:
+    def get_all(self) -> list[type[Acessorio]]:
         return self.db.query(Acessorio).all()
 
     def get_by_id(self, id: int) -> Optional[Acessorio]:
-        return self.db.query(Acessorio).filter(Acessorio.id == id).first()
+        return self.db.query(Acessorio).filter(id == Acessorio.id).first()
 
     def update(self, acessorio: Acessorio) -> Acessorio:
         self.db.commit()

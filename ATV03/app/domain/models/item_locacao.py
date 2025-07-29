@@ -1,7 +1,8 @@
 from sqlalchemy import Column, Integer, ForeignKey
 from sqlalchemy.orm import relationship
-
 from app.adapters.output.persistence.database import Base
+from app.domain.models.jogo_plataforma import JogoPlataforma
+
 
 
 class ItemLocacao(Base):
@@ -14,5 +15,5 @@ class ItemLocacao(Base):
     jogo_plataforma_id = Column(Integer, ForeignKey("jogos_plataformas.id"), nullable=False)
     locacao_id = Column(Integer, ForeignKey("locacoes.id"), nullable=False)
 
-    jogo_plataforma = relationship("JogoPlataforma")
-    locacao = relationship("Locacao")
+    jogo_plataforma = relationship(JogoPlataforma)
+    locacao = relationship("Locacao", back_populates="itens")

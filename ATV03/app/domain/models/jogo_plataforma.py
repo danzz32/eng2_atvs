@@ -1,6 +1,5 @@
 from sqlalchemy import Column, Integer, ForeignKey, Float
 from sqlalchemy.orm import relationship
-
 from app.adapters.output.persistence.database import Base
 
 
@@ -12,5 +11,5 @@ class JogoPlataforma(Base):
     plataforma_id = Column(Integer, ForeignKey("plataformas.id"), nullable=False)
     preco_diario = Column(Float, nullable=False)
 
-    jogo = relationship("Jogo")
-    plataforma = relationship("Plataforma")
+    jogo = relationship("Jogo", back_populates="jogos_plataformas")
+    plataforma = relationship("Plataforma", back_populates="jogos_plataformas")
