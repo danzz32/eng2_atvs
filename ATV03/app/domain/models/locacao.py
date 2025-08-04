@@ -16,4 +16,3 @@ class Locacao(Base):
 
     cliente = relationship(Cliente, backref="locacoes")
     itens = relationship(ItemLocacao, back_populates="locacao", cascade="all, delete-orphan")
-    uso_console = relationship("UsoConsole", uselist=False, back_populates="locacao")

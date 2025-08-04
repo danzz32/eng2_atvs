@@ -3,7 +3,7 @@ from sqlalchemy.orm import relationship
 
 from app.adapters.output.persistence.database import Base
 
-# Tabela associativa para muitos-para-muitos
+# Tabela associativa para m .. n
 acessorios_consoles = Table(
     "acessorios_consoles",
     Base.metadata,

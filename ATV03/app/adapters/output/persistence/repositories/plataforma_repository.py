@@ -1,6 +1,7 @@
+from app.domain.models import Plataforma
 from app.domain.models.plataforma import Plataforma
 from sqlalchemy.orm import Session
-from typing import List, Optional
+from typing import List, Optional, Type
 
 
 class PlataformaRepository:
@@ -13,11 +14,14 @@ class PlataformaRepository:
         self.db.refresh(plataforma)
         return plataforma
 
-    def get_all(self) -> List[Plataforma]:
+    def get_all(self) -> list[Type[Plataforma]]:
         return self.db.query(Plataforma).all()
 
     def get_by_id(self, id: int) -> Optional[Plataforma]:
-        return self.db.query(Plataforma).filter(Plataforma.id == id).first()
+        return self.db.query(Plataforma).filter(id == Plataforma.id).first()
+
+    def get_by_name(self, name: str) -> Optional[Plataforma]:
+        return self.db.query(Plataforma).filter(name == Plataforma.nome).first()
 
     def update(self, plataforma: Plataforma) -> Plataforma:
         self.db.commit()
