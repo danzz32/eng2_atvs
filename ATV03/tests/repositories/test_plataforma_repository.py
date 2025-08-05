@@ -34,7 +34,7 @@ class TestPlataformaRepository(unittest.TestCase):
 
         plataformas = self.repo.get_all()
         self.assertGreaterEqual(len(plataformas), 2)
-
+# teste de exclução de plataforma
     def test_delete(self):
         plataforma = Plataforma(nome="DeletePlataforma")
         self.repo.create(plataforma)
