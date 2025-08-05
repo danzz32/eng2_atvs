@@ -11,7 +11,7 @@ acessorios_consoles = Table(
     Column("console_id", Integer, ForeignKey("consoles.id"))
 )
 
-
+# entidade
 class Acessorio(Base):
     __tablename__ = "acessorios"
 

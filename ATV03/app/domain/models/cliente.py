@@ -2,7 +2,7 @@ from sqlalchemy import Column, Integer, String
 
 from app.adapters.output.persistence.database import Base
 
-
+# entidade
 class Cliente(Base):
     __tablename__ = "clientes"
 

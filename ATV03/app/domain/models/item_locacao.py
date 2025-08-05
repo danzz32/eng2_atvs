@@ -4,7 +4,7 @@ from app.adapters.output.persistence.database import Base
 from app.domain.models.jogo_plataforma import JogoPlataforma
 
 
-
+# entidade
 class ItemLocacao(Base):
     __tablename__ = "itens_locacao"
 

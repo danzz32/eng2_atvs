@@ -20,7 +20,7 @@ def list_clientes(db: Session = Depends(database.get_db)):
     repo = ClienteRepository(db)
     return repo.get_all()
 
-
+#rota de controller cliente c sessão database
 @router.get("/{cliente_id}", response_model=ClienteOut)
 def get_cliente(cliente_id: int, db: Session = Depends(database.get_db)):
     repo = ClienteRepository(db)

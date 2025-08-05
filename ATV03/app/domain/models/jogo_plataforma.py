@@ -2,7 +2,7 @@ from sqlalchemy import Column, Integer, ForeignKey, Float, UniqueConstraint
 from sqlalchemy.orm import relationship
 from app.adapters.output.persistence.database import Base
 
-
+# entidade
 class JogoPlataforma(Base):
     __tablename__ = "jogos_plataformas"
 

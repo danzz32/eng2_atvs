@@ -4,7 +4,7 @@ from sqlalchemy.orm import relationship
 from app.adapters.output.persistence.database import Base
 from app.domain.models.acessorio import acessorios_consoles
 
-
+# entidade
 class Console(Base):
     __tablename__ = "consoles"
 

@@ -6,7 +6,7 @@ from sqlalchemy.orm import relationship
 from app.adapters.output.persistence.database import Base
 from app.domain.models.cliente import Cliente
 from app.domain.models.item_locacao import ItemLocacao
-
+# entidade
 class Locacao(Base):
     __tablename__ = "locacoes"
 

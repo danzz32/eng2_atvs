@@ -4,7 +4,7 @@ from sqlalchemy import Column, Integer, DateTime, ForeignKey
 from sqlalchemy.orm import relationship
 
 from app.adapters.output.persistence.database import Base
-
+# entidade 
 
 class UtilizacaoDoConsolePeloCliente(Base):
     __tablename__ = "utilizacoes_console"

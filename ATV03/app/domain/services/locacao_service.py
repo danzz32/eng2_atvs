@@ -57,9 +57,10 @@ class LocacaoService:
 
         self.item_locacao_repository.create(item_locacao)
         return item_locacao
-
+#Logica do valor dle jogos com  preço e sua MultiPlataforma
     def calcular_custo_total(self, locacao_id: int) -> float:
         locacao = self.locacao_repository.get_by_id(locacao_id)
+
         if not locacao:
             raise ValueError("Locação não encontrada.")
 
