@@ -18,9 +18,14 @@ class JogoRepository:
         return self.db.query(Jogo).all()
 
     def get_by_id(self, id: int) -> Optional[Jogo]:
-        return self.db.query(Jogo).filter(id == Jogo.id).first()
+        return self.db.query(Jogo).filter(Jogo.id == id).first()
 
-    def update(self, jogo: Jogo) -> Jogo:
+    def update(self, jogo_id: int, dados: dict):
+        jogo = self.get_by_id(jogo_id)
+        if not jogo:
+            return None
+        for key, value in dados.items():
+            setattr(jogo, key, value)
         self.db.commit()
         self.db.refresh(jogo)
         return jogo

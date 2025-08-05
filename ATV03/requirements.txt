@@ -1,6 +1,9 @@
 fastapi
 uvicorn
 sqlalchemy
-pydantic
+pydantic[email]
 alembic
 pytest
+httpx
+python-multipart
+email-validator

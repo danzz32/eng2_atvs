@@ -1,4 +1,3 @@
-from app.domain.models import Locacao
 from app.domain.models.locacao import Locacao
 from sqlalchemy.orm import Session
 from typing import List, Optional
@@ -18,9 +17,14 @@ class LocacaoRepository:
         return self.db.query(Locacao).all()
 
     def get_by_id(self, id: int) -> Optional[Locacao]:
-        return self.db.query(Locacao).filter(id == Locacao.id).first()
+        return self.db.query(Locacao).filter(Locacao.id == id).first()
 
-    def update(self, locacao: Locacao) -> Locacao:
+    def get_by_cliente(self, cliente_id: int) -> Optional[Locacao]:
+        return self.db.query(Locacao).filter(Locacao.cliente_id == cliente_id).first()
+
+    def update(self, locacao: Locacao, dados: dict) -> Locacao:
+        for key, value in dados.items():
+            setattr(locacao, key, value)
         self.db.commit()
         self.db.refresh(locacao)
         return locacao

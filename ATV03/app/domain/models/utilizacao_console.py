@@ -10,7 +10,7 @@ class UtilizacaoDoConsolePeloCliente(Base):
     __tablename__ = "utilizacoes_console"
 
     id = Column(Integer, primary_key=True, index=True)
-    inicio = Column(DateTime, default=datetime.utcnow)
+    inicio = Column(DateTime, default=datetime.now)
     fim = Column(DateTime, nullable=True)
 
     console_id = Column(Integer, ForeignKey("consoles.id"), nullable=False)

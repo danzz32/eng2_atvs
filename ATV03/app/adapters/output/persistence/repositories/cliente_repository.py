@@ -1,3 +1,5 @@
+from typing import Optional
+
 from sqlalchemy.orm import Session
 from app.domain.models.cliente import Cliente
 
@@ -15,8 +17,8 @@ class ClienteRepository:
     def get_all(self):
         return self.db.query(Cliente).all()
 
-    def get_by_id(self, cliente_id: int):
-        return self.db.query(Cliente).filter(cliente_id == Cliente.id).first()
+    def get_by_id(self, cliente_id: int) -> Optional[Cliente]:
+        return self.db.query(Cliente).filter(Cliente.id == cliente_id).first()
 
     def update(self, cliente_id: int, updated_data: dict):
         cliente = self.get_by_id(cliente_id)

@@ -1,3 +1,4 @@
+from app.domain.models import UtilizacaoDoConsolePeloCliente
 from app.domain.models.utilizacao_console import UtilizacaoDoConsolePeloCliente
 from sqlalchemy.orm import Session
 from typing import List, Optional
@@ -13,7 +14,7 @@ class UtilizacaoConsoleRepository:
         self.db.refresh(uso)
         return uso
 
-    def get_all(self) -> List[UtilizacaoDoConsolePeloCliente]:
+    def get_all(self) -> list[type[UtilizacaoDoConsolePeloCliente]]:
         return self.db.query(UtilizacaoDoConsolePeloCliente).all()
 
     def get_by_id(self, id: int) -> Optional[UtilizacaoDoConsolePeloCliente]:

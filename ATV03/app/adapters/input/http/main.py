@@ -20,7 +20,13 @@ def startup_event():
     create_tables()
     print("Tabelas criadas com sucesso.")
 
-# Aqui você importa e inclui os routers conforme for criando os controllers
-# Exemplo:
-# from app.adapters.input.http.controllers import cliente_controller
-# app.include_router(cliente_controller.router)
+
+# IMPORTANDO ROTAS DA API
+from app.adapters.input.http.controllers import cliente_controller, jogo_controller, locacao_controller, \
+    utilizacao_console_controller, console_controller
+
+app.include_router(cliente_controller.router)
+app.include_router(jogo_controller.router)
+app.include_router(locacao_controller.router)
+app.include_router(console_controller.router)
+app.include_router(utilizacao_console_controller.router)
